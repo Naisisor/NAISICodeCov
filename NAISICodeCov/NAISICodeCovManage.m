@@ -17,11 +17,11 @@
     NSString *codeCoveragePath = [NSHomeDirectory() stringByAppendingPathComponent:@"Documents/CodeCoverage"];
     NSString *coverageFilesPath = [[NSString alloc] initWithFormat:@"%@/%@", codeCoveragePath, @"CoverageFiles"];
     NSFileManager *fileManager = [NSFileManager defaultManager];
-    [fileManager removeItemAtPath:codeCoveragePath error:nil]; // 删除已存在的文件夹
+    [fileManager removeItemAtPath:codeCoveragePath error:nil];    // 删除已存在的文件夹
     
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init]; // 创建一个时间格式化对象
-    [dateFormatter setDateFormat:@"YYYYMMddhhmmssSS"]; //设定时间格式,这里可以设置成自己需要的格式
-    NSString *dateString = [dateFormatter stringFromDate:[NSDate date]]; //获取当前时间、日期，并将时间转化成字符串
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];    // 创建一个时间格式化对象
+    [dateFormatter setDateFormat:@"YYYYMMddhhmmssSS"];    // 设定时间格式,这里可以设置成自己需要的格式
+    NSString *dateString = [dateFormatter stringFromDate:[NSDate date]];    //获取当前时间、日期，并将时间转化成字符串
     
     NSString *zipFileName = [[NSString alloc] initWithFormat:@"CoverageFiles %@.zip", dateString];
     NSString *zipFilePath = [[NSString alloc] initWithFormat:@"%@/%@", codeCoveragePath, zipFileName];
@@ -58,11 +58,11 @@
 }
 
 + (void)uplodaCoverageFilePath:(NSString *)filePath fileName:(NSString *)fileName {
-    //1.创建管理者对象
+    // 1. 创建管理者对象
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    //2.上传文件
+    // 2. 上传文件
     NSDictionary *params = @{@"type": @"iOS"};
-    NSString *urlString = @"http://100.66.151.127:5000/upload";
+    NSString *urlString = @"upload API";
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"text/html", nil];
     manager.responseSerializer = [AFJSONResponseSerializer serializer];
     [manager POST:urlString parameters:params constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
